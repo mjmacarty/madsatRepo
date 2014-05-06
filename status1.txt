@@ -1,0 +1,47 @@
+<status>
+
+  <process>
+
+    <id>
+       working
+       [an integer hahaha slow poke hahaha]
+
+    </id>
+
+    <type>
+
+       [agent, direct], [jdbc, accumulo, cloudbase, mapreduce, java, ...]
+
+    </type>
+
+    <query>
+
+       [select, join, analytics, ...]
+</query>
+    <location>
+
+      [server or symbolic name]
+
+    </location]
+
+    <state>
+
+      [waiting/queuing, processing/running,  completed, server offline]
+
+    </state>
+
+    <progress>
+
+      [bar of 100%]
+
+    </progress>
+
+  <process>
+
+    ...
+
+   </process>
+
+    ...
+
+</status>
