@@ -12,7 +12,7 @@ body,p li, h1{
 .wrapper{
 	width: 1200px;
 	margin: 0 auto;
-	height: 700px;
+	height: 680px;
 }
 
 .main{
@@ -38,6 +38,19 @@ body,p li, h1{
 	border: solid #4297d7 1px;
 	background-color: #fcfdfd;
 	overflow: auto;
+}
+/* Button section to click through results */
+#np-results{
+	
+	float: right;
+	display:inline;
+	width:100px;
+	height:auto;
+	border-radius: 4px;
+	border: solid #4297d7 1px;
+	background-color: #fcfdfd;
+	margin: 2px;
+	
 }
 
 #graphicsDisplay{
@@ -126,6 +139,7 @@ ul.detail{
 
 h1{
 	font-size: 16pt;
+	display:inline;
 	}
 
 .description{

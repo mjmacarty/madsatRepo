@@ -13,6 +13,7 @@
 	src="books/javascript/jquery-ui-1.10.3/js/jquery-ui-1.10.3.custom.js"></script>
 
 <script type="text/javascript">
+
 	$(document).ready(function() {
 		$("#tabs").tabs();
 	});
@@ -41,6 +42,16 @@
 			execFunction();
 		});
 	});
+	$(document).ready(function() {
+		$('#next').click(function() {
+			nextResult();
+		});
+	});
+	$(document).ready(function() {
+		$('#prev').click(function() {
+			prevResult();
+		});
+	});
 </script>
 
 
@@ -63,6 +74,7 @@
 				<option value="null" selected>Select...</option>
 				<option value="geoquery">geoquery</option>
 				<option value="madsat">madsat</option>
+				<option value="bigdata">bigdata</option>
 				<option value="madsatBIG">madsatBIG</option>
 				<option value="saluteBIG">saluteBIG</option>
 				<option value="test">test</option>
@@ -71,11 +83,14 @@
 			<button id="a-translate">Translate</button>
 			<div id="ul-container">
 				<ul id="selectable">
-					<li>Translated Queries</li>
+					<p>Translated Queries</p>
 				</ul>
 			</div>
 
 			<button id="a-execute">Execute</button>
+			<button id="next" value="100">Next</button><button id="prev"value="-100">Prev</button>
+		    <p><a href="http://ria:8080/Agent7/status.txt">Status</a> 
+		    </p>
 		</div>
 
 		<!-- Analytics models -->
@@ -469,6 +484,8 @@
 
 	<section id="query-results" style="overflow: auto;">
 		<h1>Query Results</h1>
+
+
 		<p>Select query from Library tab or Analytics tab to display
 			results.</p>
 	</section>

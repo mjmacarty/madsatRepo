@@ -11,6 +11,7 @@
 	String pword = "Matthew";
 
 	String query = request.getParameter("q");
+	System.out.println("Query= " + query);
 	String[] sqls = translation.processTranslation(query, user, pword);
 
 	for (int i = 0; i < sqls.length; i++) {

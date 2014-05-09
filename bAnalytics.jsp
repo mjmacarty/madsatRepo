@@ -43,7 +43,7 @@
 	////String connURL = "192.168.0.108";
 
 	String user = "root";
-	String password = "Matthew";
+	String password = "Ria";
 	//String password = "HelpHelp";
 	//String password = "cloudserver";
 	String tableName = "articlesBIG";

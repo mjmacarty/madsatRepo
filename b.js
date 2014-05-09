@@ -3,14 +3,14 @@ function transFunction() {
 	clean();
 	$('#selectable').html('Translating <img src="images/translate.gif" width="100">');
 	var qString = '';
-	qString = $('#database-list').val();
-	qString += ':' + $('#query-list').val();
+	qString = $('#a-database-list').val();
+	qString += ':' + $('#a-string').val();
 	$.post("bTranslate.jsp", 
 			{q : qString},
 			function(data, status) {
 		
 			$('#selectable').html(data);
-			$('#translate').removeAttr('disabled');
+			$('#a-translate').removeAttr('disabled');
 		});
 	
 	console.log(qString);
@@ -19,9 +19,9 @@ function execFunction() {
 	clean();
 	$('#query-results')
 	.html('<img src="images/ajax-loader.gif"><br>Loading...');
-	interval = setInterval(statusFunction, 1500);
+//	interval = setInterval(statusFunction, 1500);
 	var qString = '';
-	qString += $('#database-list').val();
+	qString += $('#a-database-list').val();
 	qString += ':' + $('.ui-selected').text();
 	$.post("bExecute.jsp", {
 		q : qString
@@ -29,10 +29,9 @@ function execFunction() {
 		if (status == "success") {
 			$('#graphicsDisplay').html(data);
 			callPlanAgent();
-			$('#execute-canned').removeAttr('disabled');
 		}
 	});
-	
+	$('#a-execute').removeAttr('disabled');
 	
 
 }
@@ -41,68 +40,35 @@ function callPlanAgent() {
 	$.post("bResult.jsp", {
 		q : qString
 	}, function(data, status) {
-		if (status == "success") {
-			clearInterval(interval);
-			$('#query-results').html(data);
-		};
+		
 	});
-};
-
-var getDb = function(select){
-	
-	
-	$.get('inputQueryExamples.txt',
-			function(data){
-				var string = data;
-				var dbDynamo ='';
-				dbExp = new RegExp('(DATABASE:.*)','gm');
-				dbDynamo = string.match(dbExp);
-				dbDynamo = dbDynamo.map(function(el){return el.replace('DATABASE:','')});
-				$.unique(dbDynamo);
-				console.log(dbDynamo);
-				var options = '';
-				for(i=0; i<dbDynamo.length; i++){
-					options += '<option value="' + dbDynamo[i] + '">' + dbDynamo[i] + '</option>';
-				};
-				$(select).html(options);
-				
-				
-	});
-	
-};
-
-function auto_Function() {
-    $.get('inputQueryExamples.txt',function(data){
-        var queryString = data;
-        var cleanString = "";
-        var db = '';
-        $('#database-list').change(function(){
-           db = $('#database-list').val();
-           
-           // /(^DATABASE:.*\r\n)(^NL.*)/gm
-           // http://regex101.com/r/mN4hS2
-           //modified 2/12/14
-           regex = new RegExp('(^DATABASE:'+ db +'\r\n)(^NL.*)' ,'gm');
-                       
-           cleanString = queryString.match(regex);
-            
-           var nlString = cleanString.map(function(el) {return el.replace('DATABASE:' + db,'');});
-           nlString = nlString.map(function(el){return el.replace('NL:',''); });
-           
-           $('#string').autocomplete({
-            source:nlString
-            }); 
-            
-            
-
-         }); // end change
-                                 
-        
-        
-    });//end get
+	nextResult();
 }
-
-
+function nextResult() {
+	var qString = '';
+	qString += $('#next').val();
+	
+	$.post("bNextResult.jsp", {
+		q : qString
+	}, function(data, status) {
+		if (status == "success") {
+//			clearInterval(interval);
+			$('#query-results').html(data);
+		}
+	});
+}
+function prevResult() {
+	var qString = '';
+	qString += $('#prev').val();
+	$.post("bNextResult.jsp", {
+		q : qString
+	}, function(data, status) {
+		if (status == "success") {
+//			clearInterval(interval);
+			$('#query-results').html(data);
+		}
+	});
+}
 
 function statusFunction() {
 	jQuery.get('status.txt', {
@@ -135,8 +101,8 @@ function cleanQueryResults() {
 }
 
 
-function auto_FunctionOLD() {
-	var dbSelect = $('#database-list').val();
+function auto_Function() {
+	var dbSelect = $('#a-database-list').val();
 	switch (dbSelect) {
 	case "geoquery":
 		$.get('inputGeoqueryQuery.txt', function(data) {
@@ -147,7 +113,7 @@ function auto_FunctionOLD() {
 				return el.replace('NL:', '');
 			});
 
-			$('#string').autocomplete({
+			$('#a-string').autocomplete({
 				source : nlString
 			});
 
@@ -162,7 +128,22 @@ function auto_FunctionOLD() {
 				return el.replace('NL:', '');
 			});
 
-			$('#string').autocomplete({
+			$('#a-string').autocomplete({
+				source : nlString
+			});
+
+		});// end get
+		break;
+	case "bigdata":
+		$.get('inputMadsatQuery.txt', function(data) {
+			var queryString = data;
+			var cleanString = "";
+			cleanString = queryString.match(/^NL.*/gm);
+			var nlString = cleanString.map(function(el) {
+				return el.replace('NL:', '');
+			});
+
+			$('#a-string').autocomplete({
 				source : nlString
 			});
 
@@ -173,7 +154,7 @@ function auto_FunctionOLD() {
 				"Values will be popluated intelligently",
 				"Based on user input",
 				"Functionality to be demonstrated at one year demo" ];
-		$('#string').autocomplete({
+		$('#a-string').autocomplete({
 			source : list
 		});
 	}

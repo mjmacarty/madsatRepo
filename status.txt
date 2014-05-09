@@ -1,0 +1,82 @@
+	<status>
+	<process>
+		<id>tempSelect1</id>
+		<type>Direct Query</type>
+		<query>SELECT borderinfo.State_Name FROM borderinfo WHERE borderinfo.State_Name = 'New York'</query>
+		<location>192.168.0.100</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelect1</id>
+		<type>Direct Query</type>
+		<query>SELECT borderinfo.State_Name FROM borderinfo WHERE borderinfo.State_Name = 'New York'</query>
+		<location>192.168.0.100</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelectJoin11</id>
+		<type>Direct Query</type>
+		<query>SELECT state.Capital FROM tempSelect1 JOIN state ON tempSelect1.State_Name = state.State_Name</query>
+		<location>192.168.0.100</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelectJoin12</id>
+		<type>Direct Query</type>
+		<query>SELECT state.Capital FROM tempSelect1 JOIN state ON tempSelect1.State_Name = state.State_Name</query>
+		<location>192.168.0.107</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelectJoin13</id>
+		<type>Direct Query</type>
+		<query>SELECT state.Capital FROM tempSelect1 JOIN state ON tempSelect1.State_Name = state.State_Name</query>
+		<location>192.168.0.101</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelect2</id>
+		<type>Direct Query</type>
+		<query>SELECT borderinfo.State_Name FROM borderinfo WHERE borderinfo.State_Name = 'New York'</query>
+		<location>192.168.0.101</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelect2</id>
+		<type>Direct Query</type>
+		<query>SELECT borderinfo.State_Name FROM borderinfo WHERE borderinfo.State_Name = 'New York'</query>
+		<location>192.168.0.101</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelectJoin21</id>
+		<type>Direct Query</type>
+		<query>SELECT state.Capital FROM tempSelect2 JOIN state ON tempSelect2.State_Name = state.State_Name</query>
+		<location>192.168.0.100</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelectJoin22</id>
+		<type>Direct Query</type>
+		<query>SELECT state.Capital FROM tempSelect2 JOIN state ON tempSelect2.State_Name = state.State_Name</query>
+		<location>192.168.0.107</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelectJoin23</id>
+		<type>Direct Query</type>
+		<query>SELECT state.Capital FROM tempSelect2 JOIN state ON tempSelect2.State_Name = state.State_Name</query>
+		<location>192.168.0.101</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+</status>

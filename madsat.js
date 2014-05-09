@@ -19,7 +19,7 @@ function execFunction() {
 	clean();
 	$('#query-results')
 	.html('<img src="images/ajax-loader.gif"><br>Loading...');
-	interval = setInterval(statusFunction, 1500);
+	//interval = setInterval(statusFunction, 1500);
 	var qString = '';
 	qString += $('#database-list').val();
 	qString += ':' + $('.ui-selected').text();
@@ -41,12 +41,24 @@ function callPlanAgent() {
 	$.post("bResult.jsp", {
 		q : qString
 	}, function(data, status) {
-		if (status == "success") {
-			clearInterval(interval);
-			$('#query-results').html(data);
-		};
+		
 	});
-};
+	nextResult();
+}
+
+function nextResult() {
+	var qString = '';
+	qString += $('#next').val();
+	
+	$.post("bNextResult.jsp", {
+		q : qString
+	}, function(data, status) {
+		if (status == "success") {
+//			clearInterval(interval);
+			$('#query-results').html(data);
+		}
+	});
+}
 
 var getDb = function(select){
 	

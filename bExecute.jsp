@@ -14,16 +14,23 @@
 <jsp:setProperty name="delete" property="*" />
 
 <%
+
 	String user = "root";
 	String pword = "Matthew";
+	boolean usePlanAgent=false;
 	String query = request.getParameter("q");
-	String sessionDir = request.getSession().getId();
-	String planPath =request.getContextPath()+ "\\WebContent\\" + sessionDir + "\\";
-	
+	//String sessionDir = request.getSession().getId();
+	session.setAttribute("rowNumber", "0");
+	String tmp=String.valueOf(Math.random());
+	session.setAttribute("sessionDir",tmp.substring(3) );
+	String sessionDir =(String) session.getAttribute("sessionDir");
+	//String planPath =request.getContextPath()+ "/WebContent/" + sessionDir + "/";
+	String planPath = "c:/Agent7/WebContent/" + sessionDir + "/";
 	System.out.println("request.getContextPath()= " + request.getContextPath());
 	System.out.println("query= " + query);
 	List<String> lines = execute.processTranslation(query, user, pword,
 			planPath);
+	
 %>
 <h3>Raw Plan XML</h3>
 <%
