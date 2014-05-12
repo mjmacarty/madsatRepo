@@ -29,7 +29,7 @@ body,p li, h1{
 	margin-right: 3px;
 }
 
-#query-results{
+#query-results-container{
 	float:left;
 	width:30%;
 	padding: .5em 1em;
@@ -38,6 +38,7 @@ body,p li, h1{
 	border: solid #4297d7 1px;
 	background-color: #fcfdfd;
 	overflow: auto;
+	/*margin-bottom:5px;*/
 }
 /* Button section to click through results */
 #np-results{

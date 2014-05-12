@@ -59,6 +59,18 @@ function nextResult() {
 		}
 	});
 }
+function prevResult() {
+	var qString = '';
+	qString += $('#prev').val();
+	$.post("bNextResult.jsp", {
+		q : qString
+	}, function(data, status) {
+		if (status == "success") {
+//			clearInterval(interval);
+			$('#query-results').html(data);
+		}
+	});
+}
 
 var getDb = function(select){
 	
@@ -76,7 +88,7 @@ var getDb = function(select){
 				for(i=0; i<dbDynamo.length; i++){
 					options += '<option value="' + dbDynamo[i] + '">' + dbDynamo[i] + '</option>';
 				};
-				$(select).html(options);
+				$(select).append(options);
 				
 				
 	});
@@ -129,9 +141,8 @@ function statusFunction() {
 function clean() {
 	$.post('deleteResult.jsp');
 	$('#query-results')
-			.html(
-					'<h1>Query Results</h1>'
-							+ '<p>Select query from Library tab or Analytics tab to display results.</p>');
+			.html('<p>Select query from Library tab or Analytics tab to display results.</p>');
+	
 	$('#graphicsDisplay')
 			.html(
 					'<h1>Geospatial Area of Interest</h1>'
@@ -142,8 +153,7 @@ function cleanQueryResults() {
 	$.post('deleteResult.jsp');
 	$('#query-results')
 			.html(
-					'<h1>Query Results</h1>'
-							+ '<p>Select query from Library tab or Analytics tab to display results.</p>');
+					'<p>Select query from Library tab or Analytics tab to display results.</p>');
 }
 
 

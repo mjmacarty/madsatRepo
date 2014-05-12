@@ -2,39 +2,47 @@
 	<process>
 		<id>tempSelect1</id>
 		<type>Direct Query</type>
-		<query>SELECT borderinfo.State_Name FROM borderinfo WHERE borderinfo.State_Name = 'New York'</query>
-		<location>192.168.0.100</location>
+		<query>SELECT naimobility.NAI, naimobility.Mobility FROM naimobility WHERE naimobility.Mobility = 'NoGo'</query>
+		<location>192.168.0.103</location>
 		<state>completed</state>
 		<progress>Calculating....</progress>
 	</process>
 	<process>
 		<id>tempSelect1</id>
 		<type>Direct Query</type>
-		<query>SELECT borderinfo.State_Name FROM borderinfo WHERE borderinfo.State_Name = 'New York'</query>
-		<location>192.168.0.100</location>
+		<query>SELECT naimobility.NAI, naimobility.Mobility FROM naimobility WHERE naimobility.Mobility = 'NoGo'</query>
+		<location>192.168.0.103</location>
 		<state>completed</state>
 		<progress>Calculating....</progress>
 	</process>
 	<process>
 		<id>tempSelectJoin11</id>
 		<type>Direct Query</type>
-		<query>SELECT state.Capital FROM tempSelect1 JOIN state ON tempSelect1.State_Name = state.State_Name</query>
-		<location>192.168.0.100</location>
+		<query>SELECT salute.Platform FROM salute JOIN tempSelect1 ON salute.NAI = tempSelect1.NAI</query>
+		<location>192.168.0.103</location>
 		<state>completed</state>
 		<progress>Calculating....</progress>
 	</process>
 	<process>
 		<id>tempSelectJoin12</id>
 		<type>Direct Query</type>
-		<query>SELECT state.Capital FROM tempSelect1 JOIN state ON tempSelect1.State_Name = state.State_Name</query>
-		<location>192.168.0.107</location>
+		<query>SELECT salute.Platform FROM salute JOIN tempSelect1 ON salute.NAI = tempSelect1.NAI</query>
+		<location>192.168.0.100</location>
 		<state>completed</state>
 		<progress>Calculating....</progress>
 	</process>
 	<process>
 		<id>tempSelectJoin13</id>
 		<type>Direct Query</type>
-		<query>SELECT state.Capital FROM tempSelect1 JOIN state ON tempSelect1.State_Name = state.State_Name</query>
+		<query>SELECT salute.Platform FROM salute JOIN tempSelect1 ON salute.NAI = tempSelect1.NAI</query>
+		<location>192.168.0.107</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelectJoin14</id>
+		<type>Direct Query</type>
+		<query>SELECT salute.Platform FROM salute JOIN tempSelect1 ON salute.NAI = tempSelect1.NAI</query>
 		<location>192.168.0.101</location>
 		<state>completed</state>
 		<progress>Calculating....</progress>
@@ -42,39 +50,143 @@
 	<process>
 		<id>tempSelect2</id>
 		<type>Direct Query</type>
-		<query>SELECT borderinfo.State_Name FROM borderinfo WHERE borderinfo.State_Name = 'New York'</query>
-		<location>192.168.0.101</location>
+		<query>SELECT naimobility.NAI, naimobility.Mobility FROM naimobility WHERE naimobility.Mobility = 'NoGo'</query>
+		<location>192.168.0.100</location>
 		<state>completed</state>
 		<progress>Calculating....</progress>
 	</process>
 	<process>
 		<id>tempSelect2</id>
 		<type>Direct Query</type>
-		<query>SELECT borderinfo.State_Name FROM borderinfo WHERE borderinfo.State_Name = 'New York'</query>
-		<location>192.168.0.101</location>
+		<query>SELECT naimobility.NAI, naimobility.Mobility FROM naimobility WHERE naimobility.Mobility = 'NoGo'</query>
+		<location>192.168.0.100</location>
 		<state>completed</state>
 		<progress>Calculating....</progress>
 	</process>
 	<process>
 		<id>tempSelectJoin21</id>
 		<type>Direct Query</type>
-		<query>SELECT state.Capital FROM tempSelect2 JOIN state ON tempSelect2.State_Name = state.State_Name</query>
-		<location>192.168.0.100</location>
+		<query>SELECT salute.Platform FROM salute JOIN tempSelect2 ON salute.NAI = tempSelect2.NAI</query>
+		<location>192.168.0.103</location>
 		<state>completed</state>
 		<progress>Calculating....</progress>
 	</process>
 	<process>
 		<id>tempSelectJoin22</id>
 		<type>Direct Query</type>
-		<query>SELECT state.Capital FROM tempSelect2 JOIN state ON tempSelect2.State_Name = state.State_Name</query>
-		<location>192.168.0.107</location>
+		<query>SELECT salute.Platform FROM salute JOIN tempSelect2 ON salute.NAI = tempSelect2.NAI</query>
+		<location>192.168.0.100</location>
 		<state>completed</state>
 		<progress>Calculating....</progress>
 	</process>
 	<process>
 		<id>tempSelectJoin23</id>
 		<type>Direct Query</type>
-		<query>SELECT state.Capital FROM tempSelect2 JOIN state ON tempSelect2.State_Name = state.State_Name</query>
+		<query>SELECT salute.Platform FROM salute JOIN tempSelect2 ON salute.NAI = tempSelect2.NAI</query>
+		<location>192.168.0.107</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelectJoin24</id>
+		<type>Direct Query</type>
+		<query>SELECT salute.Platform FROM salute JOIN tempSelect2 ON salute.NAI = tempSelect2.NAI</query>
+		<location>192.168.0.101</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelect3</id>
+		<type>Direct Query</type>
+		<query>SELECT naimobility.NAI, naimobility.Mobility FROM naimobility WHERE naimobility.Mobility = 'NoGo'</query>
+		<location>192.168.0.101</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelect3</id>
+		<type>Direct Query</type>
+		<query>SELECT naimobility.NAI, naimobility.Mobility FROM naimobility WHERE naimobility.Mobility = 'NoGo'</query>
+		<location>192.168.0.101</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelectJoin31</id>
+		<type>Direct Query</type>
+		<query>SELECT salute.Platform FROM salute JOIN tempSelect3 ON salute.NAI = tempSelect3.NAI</query>
+		<location>192.168.0.103</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelectJoin32</id>
+		<type>Direct Query</type>
+		<query>SELECT salute.Platform FROM salute JOIN tempSelect3 ON salute.NAI = tempSelect3.NAI</query>
+		<location>192.168.0.100</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelectJoin33</id>
+		<type>Direct Query</type>
+		<query>SELECT salute.Platform FROM salute JOIN tempSelect3 ON salute.NAI = tempSelect3.NAI</query>
+		<location>192.168.0.107</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelectJoin34</id>
+		<type>Direct Query</type>
+		<query>SELECT salute.Platform FROM salute JOIN tempSelect3 ON salute.NAI = tempSelect3.NAI</query>
+		<location>192.168.0.101</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelect4</id>
+		<type>Direct Query</type>
+		<query>SELECT naimobility.NAI, naimobility.Mobility FROM naimobility WHERE naimobility.Mobility = 'NoGo'</query>
+		<location>192.168.0.107</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelect4</id>
+		<type>Direct Query</type>
+		<query>SELECT naimobility.NAI, naimobility.Mobility FROM naimobility WHERE naimobility.Mobility = 'NoGo'</query>
+		<location>192.168.0.107</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelectJoin41</id>
+		<type>Direct Query</type>
+		<query>SELECT salute.Platform FROM salute JOIN tempSelect4 ON salute.NAI = tempSelect4.NAI</query>
+		<location>192.168.0.103</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelectJoin42</id>
+		<type>Direct Query</type>
+		<query>SELECT salute.Platform FROM salute JOIN tempSelect4 ON salute.NAI = tempSelect4.NAI</query>
+		<location>192.168.0.100</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelectJoin43</id>
+		<type>Direct Query</type>
+		<query>SELECT salute.Platform FROM salute JOIN tempSelect4 ON salute.NAI = tempSelect4.NAI</query>
+		<location>192.168.0.107</location>
+		<state>completed</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelectJoin44</id>
+		<type>Direct Query</type>
+		<query>SELECT salute.Platform FROM salute JOIN tempSelect4 ON salute.NAI = tempSelect4.NAI</query>
 		<location>192.168.0.101</location>
 		<state>completed</state>
 		<progress>Calculating....</progress>

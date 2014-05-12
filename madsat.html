@@ -20,6 +20,16 @@
             getDb('#nlq-database-list');
             getDb('#database-list');
             auto_Function();
+            
+            
+            //increment results on button click
+            $('#prev').click(function(){
+            	prevResult();
+            });
+            
+            $('#next').click(function(){
+            	nextResult();
+            });
 		
 		//clear panels when a different tab is selected	
 		$('#tabs li a').click(function(){
@@ -529,23 +539,23 @@
 
 <!-- continuous real time status messaging (output) -->
 
-	<section id="query-results" style="overflow:auto;">
+	<section id="query-results-container">
      
-	<div>
+	<div style="margin-bottom:30px;">
 	<h1 style="width:50%; display:inline;">Query Results</h1>
 	<div id="np-results">
 	
 	
-	<button>Prev</button>
-	<button>Next</button>
+	<button id="prev" value="-100">Prev</button>
+	<button id="next" value="100">Next</button>
 	</div>
 	</div>
-	<div>
+	<div id="query-results" style="overflow:auto">
 	<p>Select query from Library tab or Analytics tab to display results.</p>
 	</div>
 
 	
-	</section>
+	</section> 
 	
 	
 	

@@ -48,7 +48,7 @@
 		results = pr.processXML(resultPath);
 	}
 %>
-<h3>Query Results</h3>
+
 <table>
 	<tbody>
 		<%
