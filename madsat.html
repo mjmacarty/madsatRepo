@@ -25,10 +25,12 @@
             //increment results on button click
             $('#prev').click(function(){
             	prevResult();
+            	fetch();
             });
             
             $('#next').click(function(){
             	nextResult();
+            	fetch();
             });
 		
 		//clear panels when a different tab is selected	
@@ -275,9 +277,12 @@
                                         });
             
             $('#execute-canned').click(function(){
-				this.disabled =true;    
+            	var cao = new Date();
+				$('#cao').html(cao);
+            	this.disabled =true;    
 				execFunction();
-			
+				
+							
 				
             }); //end click
 	    
@@ -541,7 +546,7 @@
 
 	<section id="query-results-container">
      
-	<div style="margin-bottom:30px;">
+	<div style="margin-bottom:0px;">
 	<h1 style="width:50%; display:inline;">Query Results</h1>
 	<div id="np-results">
 	
@@ -549,6 +554,8 @@
 	<button id="prev" value="-100">Prev</button>
 	<button id="next" value="100">Next</button>
 	</div>
+	
+	<p id="fetch" style="color:#4297d7;"></p>
 	</div>
 	<div id="query-results" style="overflow:auto">
 	<p>Select query from Library tab or Analytics tab to display results.</p>
@@ -560,12 +567,20 @@
 	
 	
 
+<div id="status">
+<h1>Status</h1><br>
+<p class="status" style="font-size:11px">Current as of: <span id="cao" style="font-size:10px"></span></p><br>
+<p class="status">Total Queries Planned: &lt;&lt;xx&gt;&gt;</p><br>
+<p class="status">Queries Completed: &lt;&lt;yy&gt;&gt;</p><br>
+<p class="status">Percent Complete: &lt;&lt;xx%&gt;&gt;</p><br>
+<p class="status">Estimated Time to Completion: &lt;&lt;time&gt;&gt;</p>
 
+</div>
 
-<section id="graphicsDisplay">
+<div id="graphicsDisplay">
 	<h1>Geospatial Area of Interest</h1>
     <p>This panel will display, if relevant, a graphic of interest. Panel may be split into two as development progresses, a top and bottom to allow output of Bayesian Model and other relevant graphic such as an interactive map.</p>
-</section>
+</div>
 
 </div> <!--end of main-->
 </div> <!--end of wrapper-->

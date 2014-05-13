@@ -29,7 +29,7 @@ function execFunction() {
 		if (status == "success") {
 			$('#graphicsDisplay').html(data);
 			callPlanAgent();
-			$('#execute-canned').removeAttr('disabled');
+			//$('#execute-canned').removeAttr('disabled');
 		}
 	});
 	
@@ -42,11 +42,14 @@ function callPlanAgent() {
 		q : qString
 	}, function(data, status) {
 		
+	}).done(function(){
+		$('#execute-canned').removeAttr('disabled');
 	});
 	nextResult();
 }
 
 function nextResult() {
+	
 	var qString = '';
 	qString += $('#next').val();
 	
@@ -56,7 +59,9 @@ function nextResult() {
 		if (status == "success") {
 //			clearInterval(interval);
 			$('#query-results').html(data);
-		}
+		};
+	}).done(function(){
+		$('#fetch').html('');
 	});
 }
 function prevResult() {
@@ -68,20 +73,22 @@ function prevResult() {
 		if (status == "success") {
 //			clearInterval(interval);
 			$('#query-results').html(data);
-		}
+		};
+	}).done(function(){
+		$('#fetch').html('');
 	});
 }
 
 var getDb = function(select){
 	
-	
+	//get database names from inputQueryExamples
 	$.get('inputQueryExamples.txt',
 			function(data){
 				var string = data;
 				var dbDynamo ='';
 				dbExp = new RegExp('(DATABASE:.*)','gm');
 				dbDynamo = string.match(dbExp);
-				dbDynamo = dbDynamo.map(function(el){return el.replace('DATABASE:','')});
+				dbDynamo = dbDynamo.map(function(el){return el.replace('DATABASE:','');});
 				$.unique(dbDynamo);
 				console.log(dbDynamo);
 				var options = '';
@@ -93,6 +100,10 @@ var getDb = function(select){
 				
 	});
 	
+};
+
+var fetch = function(){
+	  $('#fetch').html('Fetching&nbsp;' + '<img src="images/fetch.gif" width="100">');
 };
 
 function auto_Function() {
