@@ -7,10 +7,14 @@ function transFunction() {
 	qString += ':' + $('#query-list').val();
 	$.post("bTranslate.jsp", 
 			{q : qString},
+			
 			function(data, status) {
 		
 			$('#selectable').html(data);
-			$('#translate').removeAttr('disabled');
+			
+		}).done(function(){
+			$('#translate').button("enable");
+			//$('#translate').removeAttr('ui-button-disabled');
 		});
 	
 	console.log(qString);
@@ -89,8 +93,16 @@ var getDb = function(select){
 				dbExp = new RegExp('(DATABASE:.*)','gm');
 				dbDynamo = string.match(dbExp);
 				dbDynamo = dbDynamo.map(function(el){return el.replace('DATABASE:','');});
-				$.unique(dbDynamo);
-				console.log(dbDynamo);
+
+				var outArray = [];
+				for(i=0; i < dbDynamo.length; i++){
+					if ($.inArray(dbDynamo[i],outArray)== -1){
+						outArray.push(dbDynamo[i]);
+						}
+					}
+								
+				dbDynamo = outArray.sort();
+				
 				var options = '';
 				for(i=0; i<dbDynamo.length; i++){
 					options += '<option value="' + dbDynamo[i] + '">' + dbDynamo[i] + '</option>';
@@ -211,4 +223,13 @@ function auto_FunctionOLD() {
 		});
 	}
 }
+
+$(function (){
+	$('button')
+		.button()
+		.click(function(event){
+			event.preventDefault();
+			
+		});
+});
 

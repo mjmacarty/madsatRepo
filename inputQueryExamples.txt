@@ -19,7 +19,7 @@ dobj(border-9, states-13)
 QUERY:2
 DATABASE:geoquery
 NL:What are the capitals of the states bordering New York?
-SQL:SELECT state.Capital FROM state JOIN border_info ON state.State_Name = border_info.State_Name WHERE border_info.Border = 'New York'
+SQL:SELECT state.Capital FROM state JOIN borderinfo ON state.State_Name = borderinfo.State_Name WHERE borderinfo.Border = 'New York'
 DR:
 root(ROOT-0, What-1)
 cop(What-1, are-2)
@@ -34,7 +34,7 @@ dobj(bordering-8, York-10)
 QUERY:3
 DATABASE:geoquery
 NL:Show the state capitals and populations.
-SQL:something
+SQL:SELECT state.Capital, state.Population FROM state
 DR:
 root(ROOT-0, Show-1)
 det(capitals-4, the-2)
@@ -45,6 +45,13 @@ conj_and(capitals-4, populations-6)
 
 QUERY:4
 DATABASE:geoquery
+NL:Show the capital of the state New York.
+SQL:SELECT state.Capital FROM state WHERE state.State_Name = 'New York'
+DR:
+???
+
+QUERY:5
+DATABASE:geoquery
 NL:Show the average of state populations.
 SQL:something
 DR:
@@ -54,10 +61,10 @@ dobj(Show-1, average-3)
 nn(populations-6, state-5)
 prep_of(average-3, populations-6)
 
-QUERY:5
+QUERY:6
 DATABASE:madsat
 NL:Show Salute platforms from NAIs with mobility nogo.
-SQL:SELECT NAI, Platform FROM salute JOIN naimobility ON salute.NAI = naimobility.NAI WHERE naimobility.Mobility = ‘No Go’
+SQL:SELECT salute.Platform FROM salute JOIN naimobility ON salute.NAI = naimobility.NAI WHERE naimobility.Mobility = ‘No Go’
 DR:
 nn(Salute-2, Show-1)
 nsubj(platforms-3, Salute-2)
@@ -66,7 +73,7 @@ prep_from(platforms-3, NAIs-5)
 prep_with(platforms-3, mobility-7)
 prep_as(platforms-3, nogo-9)
 
-QUERY:6
+QUERY:7
 DATABASE:madsat
 NL:Show Salute platforms from NAIs.
 SQL:SELECT NAI, Platform FROM salute
@@ -76,7 +83,7 @@ nsubj(platforms-3, Salute-2)
 root(ROOT-0, platforms-3)
 prep_from(platforms-3, NAIs-5)
 
-QUERY:7
+QUERY:8
 DATABASE:datasite
 NL:Show tables and servers from sites.
 SQL:SELECT Table, Server FROM Sites
@@ -86,3 +93,36 @@ dobj(Show-1, tables-2)
 dobj(Show-1, servers-4)
 conj_and(tables-2, servers-4)
 prep_from(Show-1, sites-6)
+
+QUERY:9
+DATABASE:bigdata
+NL:Show Salute platforms from NAIs with mobility nogo.
+SQL:SELECT salute.Platform FROM salute JOIN naimobility ON salute.NAI = naimobility.NAI WHERE naimobility.Mobility = 'No Go'
+DR:
+nn(Salute-2, Show-1)
+nsubj(platforms-3, Salute-2)
+root(ROOT-0, platforms-3)
+prep_from(platforms-3, NAIs-5)
+prep_with(platforms-3, mobility-7)
+prep_as(platforms-3, nogo-9)
+
+QUERY:10
+DATABASE:weapon
+NL:List countries who have Baradero class ships.
+SQL:SELECT navyship.Country FROM navyship WHERE navyship.class = ‘Baradero’
+DR:
+nn(Weapon-2, List-1)
+
+QUERY:11
+DATABASE:weapon
+NL:Show countries and lengths who have Frigate type ships.
+SQL:SELECT navyship.Country AND navyship.Length FROM navyship WHERE navyship.type = ‘Frigate’
+DR:
+nn(Weapon-2, Show-1)
+
+QUERY:12
+DATABASE:weapon
+NL:Show countries with ships of Frigate type and Baradero class.
+SQL:SELECT navyship.Country FROM navyship WHERE navyship.type = ‘Frigate’ AND navyship.Class = ‘Baradero’
+DR:
+nn(Weapon-2, Show-1)

@@ -208,7 +208,7 @@
 	  <br><br>
 	<label for="query-list">Select Query:</label><br>
 	<input type="text" id="query-list" size="38"><br><br>
-	<button id="translate">Translate</button>
+	<button id="translate" class="ui-button">Translate</button>
 	<div id="ul-container">
             <ul id="selectable">
                 
@@ -257,7 +257,8 @@
 	       
             //var qString = '';
             $('#translate').click(function(){
-            this.disabled = true;
+            $('#translate').button("option", "disabled", true);
+            	//this.disabled = true;
 	    	transFunction();
 	   		
             
@@ -277,7 +278,8 @@
                                         });
             
             $('#execute-canned').click(function(){
-            	var cao = new Date();
+            	var cao = '<br>'; 
+            	cao += new Date();
 				$('#cao').html(cao);
             	this.disabled =true;    
 				execFunction();
@@ -568,12 +570,14 @@
 	
 
 <div id="status">
-<h1>Status</h1><br>
-<p class="status" style="font-size:11px">Current as of: <span id="cao" style="font-size:10px"></span></p><br>
+<h1>Status Summary</h1><br>
+<p class="status">Current as of:</p>
+<span id="cao" style="font-size:10pt"></span><br>
 <p class="status">Total Queries Planned: &lt;&lt;xx&gt;&gt;</p><br>
 <p class="status">Queries Completed: &lt;&lt;yy&gt;&gt;</p><br>
 <p class="status">Percent Complete: &lt;&lt;xx%&gt;&gt;</p><br>
-<p class="status">Estimated Time to Completion: &lt;&lt;time&gt;&gt;</p>
+<p class="status">Elapsed Time of Run: &lt;&lt;time&gt;&gt;</p>
+<p class="status">Number of Records Returned: &lt;&lt;time&gt;&gt;</p>
 
 </div>
 
