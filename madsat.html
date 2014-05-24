@@ -19,6 +19,16 @@
             //get available datasources
             getDb('#nlq-database-list');
             getDb('#database-list');
+            
+            //update status content based on active tab
+            $('#library-tab').click(function(){
+            	statusDisplay.change(statusDisplay.libraryTab);
+            });
+            
+            $('#analytics-tab').click(function(){
+            	statusDisplay.change(statusDisplay.analyticsTab);
+            });
+            
             auto_Function();
             
             
@@ -37,8 +47,8 @@
 		$('#tabs li a').click(function(){
 		
 			$.post('deleteFiles.jsp');
-		  $('#query-results').html('<h1>Query Results</h1>' +
-	'<p>Select query from Library tab or Analytics tab to display results.</p>');
+		 /* $('#query-results').html('<h1>Query Results</h1>' +
+	'<p>Select query from Library tab or Analytics tab to display results.</p>');*/
 		  
 		  $('#graphicsDisplay').html('<h1>Geospatial Area of Interest</h1>' +
     '<p>This panel will display, if relevant, a graphic of interest.')
@@ -70,9 +80,9 @@
 
 <div id="tabs" class="tabs-css">
     <ul>
-        <li><a href="#tabs-5">Library</a></li>
-	<li><a href="#tabs-6">Analytics</a></li>
-	<li><a href="#tabs-1">Constrained</a></li>
+        <li id="library-tab"><a href="#tabs-5">Library</a></li>
+		<li id="analytics-tab"><a href="#tabs-6">Analytics</a></li>
+		<li><a href="#tabs-1">Constrained</a></li>
         <li><a href="#tabs-2">NLQ</a></li>
         <li><a href="#tabs-3">Keyword</a></li>
         <li><a href="#tabs-4">SQL</a></li>
@@ -297,7 +307,7 @@
     </div>
      <!-- Analytics models -->
     <div id="tabs-6">
-    	<h1>Analytics</h1>
+    	<h1>Analytics</h1><br>
 	<label for="model-database-list">Select Data Source:</label><br>
 	<select id="model-database-list" style="width:150px; height:25px;">
 	<option value="null" selected>Select...</option>
@@ -568,16 +578,16 @@
 	
 	
 	
-
+<!--  high level statistics/ data points from current query -->
 <div id="status">
 <h1>Status Summary</h1><br>
 <p class="status">Current as of:</p>
 <span id="cao" style="font-size:10pt"></span><br>
-<p class="status">Total Queries Planned: &lt;&lt;xx&gt;&gt;</p><br>
-<p class="status">Queries Completed: &lt;&lt;yy&gt;&gt;</p><br>
-<p class="status">Percent Complete: &lt;&lt;xx%&gt;&gt;</p><br>
-<p class="status">Elapsed Time of Run: &lt;&lt;time&gt;&gt;</p>
-<p class="status">Number of Records Returned: &lt;&lt;time&gt;&gt;</p>
+<p class="status">Total Queries Planned: <span id="total-status" class="status"></span></p><br>
+<p class="status">Queries Completed: <span id="complete-status" class="status"></span></p><br>
+<p class="status">Percent Complete: <span id="percent-status" class="status"></span></p><br>
+<p class="status">Elapsed Time of Run: <span id="elapsed-status" class="status"></span></p><br>
+<p class="status">Number of Records Returned: <span id="records-status" class="status"></span></p>
 
 </div>
 

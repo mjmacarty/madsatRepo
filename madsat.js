@@ -118,6 +118,29 @@ var fetch = function(){
 	  $('#fetch').html('Fetching&nbsp;' + '<img src="images/fetch.gif" width="100">');
 };
 
+
+// change status panel display based on active tab
+
+var statusDisplay = {
+		
+		libraryTab : '<h1>Status Summary</h1><br>' +
+			 '<p class="status">Current as of:</p>' +
+		'<span id="cao" style="font-size:10pt"></span><br>' +
+		'<p class="status">Total Queries Planned: <span id="total-status" class="status"></span></p><br>' +
+		'<p class="status">Queries Completed: <span id="complete-status" class="status"></span></p><br>' +
+		'<p class="status">Percent Complete: <span id="percent-status" class="status"></span></p><br>' +
+		'<p class="status">Elapsed Time of Run: <span id="elapsed-status" class="status"></span></p><br>' +
+		'<p class="status">Number of Records Returned: <span id="records-status" class="status"></span></p>'
+,
+		
+		analyticsTab :'<h1>Model Nodes</h1><br>' + 
+		'<select id="analytics-nodes" style="width:150px; height:25px;"></select>',
+		
+		change : function(content){
+			$('#status').html(content);
+		}
+}
+
 function auto_Function() {
     $.get('inputQueryExamples.txt',function(data){
         var queryString = data;
