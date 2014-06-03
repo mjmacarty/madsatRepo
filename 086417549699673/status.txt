@@ -1,0 +1,58 @@
+	<status>
+	<process>
+		<id>tempSelect1</id>
+		<type>Direct Query</type>
+		<query>SELECT naimobility.NAI, naimobility.Mobility FROM naimobility WHERE naimobility.Mobility = 'NoGo'</query>
+		<location>192.168.0.103</location>
+		<state>offline</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelect2</id>
+		<type>Direct Query</type>
+		<query>SELECT naimobility.NAI, naimobility.Mobility FROM naimobility WHERE naimobility.Mobility = 'NoGo'</query>
+		<location>192.168.0.100</location>
+		<state>offline</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelect3</id>
+		<type>Direct Query</type>
+		<query>SELECT naimobility.NAI, naimobility.Mobility FROM naimobility WHERE naimobility.Mobility = 'NoGo'</query>
+		<location>192.168.0.101</location>
+		<state>offline</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelect4</id>
+		<type>Direct Query</type>
+		<query>SELECT naimobility.NAI, naimobility.Mobility FROM naimobility WHERE naimobility.Mobility = 'NoGo'</query>
+		<location>192.168.0.107</location>
+		<state>offline</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelect5</id>
+		<type>Direct Query</type>
+		<query>SELECT naimobility.NAI, naimobility.Mobility FROM naimobility WHERE naimobility.Mobility = 'NoGo'</query>
+		<location>192.168.1.6</location>
+		<state>offline</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelect6</id>
+		<type>Direct Query</type>
+		<query>SELECT naimobility.NAI, naimobility.Mobility FROM naimobility WHERE naimobility.Mobility = 'NoGo'</query>
+		<location>192.168.1.6</location>
+		<state>offline</state>
+		<progress>Calculating....</progress>
+	</process>
+	<process>
+		<id>tempSelect7</id>
+		<type>Direct Query</type>
+		<query>SELECT naimobility.NAI, naimobility.Mobility FROM naimobility WHERE naimobility.Mobility = 'NoGo'</query>
+		<location>192.168.1.6</location>
+		<state>offline</state>
+		<progress>Calculating....</progress>
+	</process>
+</status>

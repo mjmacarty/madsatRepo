@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<link rel="stylesheet"  type="text/css" href="styles/jquery-ui-1.10.3.custom.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/madsat.css"/>
+	<title></title>
+
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> 	
+	<script type="text/javascript" src="books/javascript/jquery-ui-1.10.3/js/jquery-ui-1.10.3.custom.js"></script>
+
+	
+</head>
+<body>
+   Progress: <div id="progress" style="height:15px; width:200px;">
+   </div>
+   <p id="progress-text"></p>
+   Progress 2:<div id="progress-two" style="height:15px; width:200px;">
+   
+   </div>
+   <p id="complete-text"></p>	
+	<button id="clicker">Clicker</button>
+	<button id="click-me">Now Click me!</button>
+	
+
+
+   <script type="text/javascript">
+	$(document).ready(function(){		
+  	$('#progress-two').progressbar(); 
+   $('#clicker').click(function(){	
+   	$('#progress').progressbar();
+		var value = 0;
+		var timer = setInterval(function(){
+			$('#progress').progressbar("value",value);
+			
+			$('#progress-text').html(value + '% Complete');	
+			value++;
+			if (value > 100) clearInterval(timer);
+			
+		},50);
+	});
+	});
+	
+	$('#click-me').click(function(){
+		recurse();
+	})
+
+	var recurse = function(){
+	var timeIt = setInterval(function(){statusUpdate.getNumQueries(); },50)
+	
+	};
+	
+	
+	var statusUpdate = {
+		queries : [],
+		numQueries : 0,
+		session : '',
+		getNumQueries : function(){
+			$.ajax({
+				type: 'get',
+				url: '086417549699673/planXML.txt',
+				cache: false,
+				error: function()
+				{ 
+					//clearInterval(timeIt);
+					//recurse();
+				},
+				success: function(data){
+					//clearInterval(timeIt);
+					statusUpdate.queries = $(data).find('query');
+					statusUpdate.numQueries = statusUpdate.queries.length;
+					$('#total-status').html(statusUpdate.numQueries);
+					
+				},
+				complete: function(){
+					$.ajax({
+						type: 'get',
+						url: '086417549699673/status.txt',
+						cache: false,
+						success: function(data){
+							var completed = '';
+							var numCompleted = 1;
+							completed = $(data).find('state');
+							numCompleted = completed.length;
+							
+							percentComplete = numCompleted/statusUpdate.numQueries * 100
+							console.log(numCompleted);
+							console.log(numCompleted/statusUpdate.numQueries);
+							$('#progress-two').progressbar('value', percentComplete);
+							$('#complete-text').html(percentComplete + '% Complete');
+							if(percentComplete>=99)clearInterval(timeIt);
+						}
+					});
+				}
+				
+
+			});
+
+			}  // end getNumQueries
+			
+	};
+	
+	 
+	//statusUpdate.getNumQueries();
+	
+	
+	
+
+		
+		
+	</script>
+
+</body>
+</html>	

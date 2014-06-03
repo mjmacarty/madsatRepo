@@ -32,9 +32,17 @@ function execFunction() {
 	}, function(data, status) {
 		if (status == "success") {
 			$('#graphicsDisplay').html(data);
+				//get folder name for current run
+			
+			
 			callPlanAgent();
 			//$('#execute-canned').removeAttr('disabled');
 		}
+	}).done(function(){
+		statusUpdate.session = $('session').text();
+		console.log(statusUpdate.session);
+		var timeIt = setInterval(function(){statusUpdate.getNumQueries(); },200) 
+		
 	});
 	
 	
@@ -47,7 +55,7 @@ function callPlanAgent() {
 	}, function(data, status) {
 		
 	}).done(function(){
-		$('#execute-canned').removeAttr('disabled');
+		$('#execute-canned').button("enable");
 	});
 	nextResult();
 }
@@ -133,13 +141,62 @@ var statusDisplay = {
 		'<p class="status">Number of Records Returned: <span id="records-status" class="status"></span></p>'
 ,
 		
-		analyticsTab :'<h1>Model Nodes</h1><br>' + 
+		analyticsTab :'<h1>Model Nodes</h1><p>Node Name</p>' + 
 		'<select id="analytics-nodes" style="width:150px; height:25px;"></select>',
 		
 		change : function(content){
 			$('#status').html(content);
 		}
-}
+};
+
+var statusUpdate = {
+		queries : [],
+		numQueries : 0,
+		session : '',
+		getNumQueries : function(){
+			$.ajax({
+				type: 'get',
+				url: statusUpdate.session +'/planXML.txt',
+				cache: false,
+				error: function()
+				{ 
+					//clearInterval(timeIt);
+					//recurse();
+				},
+				success: function(data){
+					//clearInterval(timeIt);
+					statusUpdate.queries = $(data).find('query');
+					statusUpdate.numQueries = statusUpdate.queries.length;
+					$('#total-status').html(statusUpdate.numQueries);
+					
+				},
+				complete: function(){
+					$.ajax({
+						type: 'get',
+						url: statusUpdate.session + '/status.txt',
+						cache: false,
+						success: function(data){
+							var completed = '';
+							var numCompleted = 1;
+							completed = $(data).find('state');
+							numCompleted = completed.length;
+							
+							percentComplete = numCompleted/statusUpdate.numQueries * 100;
+							console.log(numCompleted);
+							console.log(numCompleted/statusUpdate.numQueries);
+							$('#progress-two').progressbar('value', percentComplete);
+							$('#complete-text').html(percentComplete + '% Complete');
+							if(percentComplete>=99)clearInterval(timeIt);
+						}
+					});
+				}
+				
+
+			});
+
+			}  // end getNumQueries
+			
+	};
 
 function auto_Function() {
     $.get('inputQueryExamples.txt',function(data){

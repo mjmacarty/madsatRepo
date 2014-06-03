@@ -1,7 +1,8 @@
 <%@page import="madsat2.bean.Answer"%>
 <%@page import="madsat2.bean.Column"%>
 <%@page import="java.util.*"%>
-
+<%@page import="java.util.Properties"%>
+<%@page import="java.io.*"%>
 
 <jsp:useBean id="result" class="madsat2.controller.ResultController"
 	scope="session" />
@@ -11,19 +12,15 @@
 <jsp:setProperty name="delete" property="*" />
 
 <%
-	//	String sessionDir = request.getSession().getId();
-	String sessionDir = (String) session.getAttribute("sessionDir");
-	String dirPath = "C:/Agent7/WebContent/" + sessionDir;
-	String planPath = dirPath + "/planXML.txt";
+	//String sessionDir = (String) session.getAttribute("sessionDir");
+	String sessionID = request.getSession().getId();
+	String sessionDir = (String) session.getAttribute(sessionID);
+
+	String path = "c:/Agent7/WebContent/" + sessionDir + "/";
 	boolean usePlanAgent = false;
-	String resultPath = dirPath + "/result.txt";
+	String resultPath = path + "result.txt";
 
-	if (usePlanAgent) {
-		resultPath = request.getContextPath()
-				+ "/WebContent/result.txt";
-	}
-
-	List<Answer> results = result.getResults(dirPath, resultPath,
+	List<Answer> results = result.getResults(path, resultPath,
 			usePlanAgent);
 %>
 <h3>Query Status</h3>
