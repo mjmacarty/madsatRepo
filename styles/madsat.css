@@ -73,7 +73,11 @@ body,p li, h1{
 	display:inline;
 	line-height:1.25;
 	font-weight:700;
-	color:#4297d7; 
+	color:#545454; 
+}
+
+.status-update{
+	color:#ff9933;
 }
 
 #graphicsDisplay{

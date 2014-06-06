@@ -180,11 +180,11 @@ var statusUpdate = {
 							var numCompleted = 1;
 							completed = $(data).find('state');
 							numCompleted = completed.length;
-							
+							$('#complete-status').html(numCompleted);
 							percentComplete = numCompleted/statusUpdate.numQueries * 100;
 							console.log(numCompleted);
 							console.log(numCompleted/statusUpdate.numQueries);
-							$('#progress-two').progressbar('value', percentComplete);
+							$('#progress').progressbar('value', percentComplete);
 							$('#complete-text').html(percentComplete + '% Complete');
 							if(percentComplete>=99)clearInterval(timeIt);
 						}
@@ -197,6 +197,12 @@ var statusUpdate = {
 			}  // end getNumQueries
 			
 	};
+
+var addProgressBar = function(){
+	$('#query-results').html('<div id="progress" style="height:15px; width:200px;">' +
+			'</div> <p id="complete-text"></p>');
+	$('#progress').progressbar();
+  };
 
 function auto_Function() {
     $.get('inputQueryExamples.txt',function(data){

@@ -111,10 +111,10 @@
 	    <p class="description">User may enter query in free-form natural language expressions, 		either in a command mode as "Show all the reports..." or in a question mode such as "What are the intrusions in the past month in the area between..."</p>
 	    
         <label for="nlq-database-list">Select Data Source:</label><br>
-	<select id="nlq-database-list" style="width:150px; height:25px;">
-	<option value="null">Select...</option>
-	</select>  
-	  <br><br>
+		<select id="nlq-database-list" style="width:150px; height:25px;">
+		<option value="null">Select...</option>
+		</select>  
+	  	<br><br>
 	    <label for="nlq-string">Enter query: </label><br>
 	    <input type="text" id="string" size="30"><br>
 	    <input type="text" id="nlq-string" size="30"><br><br>
@@ -293,6 +293,7 @@
 				$('#cao').html(cao);
 				$('#execute-canned').button("option", "disabled", true);    
 				execFunction();
+				addProgressBar();
 				
 				
 							
@@ -584,11 +585,11 @@
 <h1>Status Summary</h1><br>
 <p class="status">Current as of:</p>
 <span id="cao" style="font-size:10pt"></span><br>
-<p class="status">Total Queries Planned: <span id="total-status" class="status"></span></p><br>
-<p class="status">Queries Completed: <span id="complete-status" class="status"></span></p><br>
-<p class="status">Percent Complete: <span id="percent-status" class="status"></span></p><br>
-<p class="status">Elapsed Time of Run: <span id="elapsed-status" class="status"></span></p><br>
-<p class="status">Number of Records Returned: <span id="records-status" class="status"></span></p>
+<p class="status">Total Queries Planned: <span id="total-status" class="status-update"></span></p><br>
+<p class="status">Queries Completed: <span id="complete-status" class="status-update"></span></p><br>
+<p class="status">Percent Complete: <span id="percent-status" class="status-update"></span></p><br>
+<p class="status">Elapsed Time of Run: <span id="elapsed-status" class="status-update"></span></p><br>
+<p class="status">Number of Records Returned: <span id="records-status" class="status-update"></span></p>
 
 </div>
 
