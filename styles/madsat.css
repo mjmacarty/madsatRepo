@@ -40,6 +40,11 @@ body,p li, h1{
 	overflow: auto;
 	margin-bottom:5px;
 }
+
+#query-results{
+	padding-top: 10px;
+}
+
 /* Button section to click through results */
 #np-results{
 	
@@ -65,7 +70,11 @@ body,p li, h1{
 	background-color: #fcfdfd;
 	padding-top:.5em;
 	padding-left:1em;
-	
+	overflow:auto;
+
+#progress{
+	display:inline;
+}	
 	
 }
 .status{
@@ -73,11 +82,13 @@ body,p li, h1{
 	display:inline;
 	line-height:1.25;
 	font-weight:700;
+	font-size:9pt;
 	color:#545454; 
 }
 
 .status-update{
 	color:#ff9933;
+	font-size:9pt;
 }
 
 #graphicsDisplay{

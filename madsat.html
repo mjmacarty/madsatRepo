@@ -583,12 +583,12 @@
 <!--  high level statistics/ data points from current query -->
 <div id="status">
 <h1>Status Summary</h1><br>
-<p class="status">Current as of:</p>
-<span id="cao" style="font-size:10pt"></span><br>
+<p class="status">Current as of:<span id="cao" class="status-update"></span></p><br>
 <p class="status">Total Queries Planned: <span id="total-status" class="status-update"></span></p><br>
+<p class="status">Queries Executing: <span id="queries-executing" class="status-update"></span></p><br>
 <p class="status">Queries Completed: <span id="complete-status" class="status-update"></span></p><br>
-<p class="status">Percent Complete: <span id="percent-status" class="status-update"></span></p><br>
-<p class="status">Elapsed Time of Run: <span id="elapsed-status" class="status-update"></span></p><br>
+<p class="status" id="percent-complete" style="display:inline;">Percent Complete: </p>
+<br><p class="status">Elapsed Time of Run: <span id="elapsed-status" class="status-update"></span></p><br>
 <p class="status">Number of Records Returned: <span id="records-status" class="status-update"></span></p>
 
 </div>

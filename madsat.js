@@ -41,7 +41,7 @@ function execFunction() {
 	}).done(function(){
 		statusUpdate.session = $('session').text();
 		console.log(statusUpdate.session);
-		var timeIt = setInterval(function(){statusUpdate.getNumQueries(); },200) 
+		var timeIt = setInterval(function(){statusUpdate.getNumQueries(); },200); 
 		
 	});
 	
@@ -199,8 +199,8 @@ var statusUpdate = {
 	};
 
 var addProgressBar = function(){
-	$('#query-results').html('<div id="progress" style="height:15px; width:200px;">' +
-			'</div> <p id="complete-text"></p>');
+	$('#percent-complete').append('<div id="progress" style="height:10px; width:100px;">' +
+			'</div> <span style="display:inline;" id="complete-text" class="status-update"></span>');
 	$('#progress').progressbar();
   };
 

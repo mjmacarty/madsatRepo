@@ -17,7 +17,7 @@
 	String sessionDir = (String) session.getAttribute(sessionID);
 
 	String path = "c:/Agent7/WebContent/" + sessionDir + "/";
-	boolean usePlanAgent = false;
+	boolean usePlanAgent = true;
 	String resultPath = path + "result.txt";
 
 	List<Answer> results = result.getResults(path, resultPath,
