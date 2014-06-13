@@ -5,8 +5,9 @@
  */
 
 
-body,p li, h1{
+body,p li, h1 div {
 	font-family: 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	display:block;
 }
 
 .wrapper{
@@ -89,6 +90,7 @@ body,p li, h1{
 .status-update{
 	color:#ff9933;
 	font-size:9pt;
+	font-weight:700;
 }
 
 #graphicsDisplay{

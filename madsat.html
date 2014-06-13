@@ -46,9 +46,13 @@
 		//clear panels when a different tab is selected	
 		$('#tabs li a').click(function(){
 		
+		// clear status update values
+		$('#database-list').change(function(){
+			clearStatus();
+		})
+			
 			$.post('deleteFiles.jsp');
-		 /* $('#query-results').html('<h1>Query Results</h1>' +
-	'<p>Select query from Library tab or Analytics tab to display results.</p>');*/
+		 
 		  
 		  $('#graphicsDisplay').html('<h1>Geospatial Area of Interest</h1>' +
     '<p>This panel will display, if relevant, a graphic of interest.')
@@ -587,7 +591,7 @@
 <p class="status">Total Queries Planned: <span id="total-status" class="status-update"></span></p><br>
 <p class="status">Queries Executing: <span id="queries-executing" class="status-update"></span></p><br>
 <p class="status">Queries Completed: <span id="complete-status" class="status-update"></span></p><br>
-<p class="status" id="percent-complete" style="display:inline;">Percent Complete: </p>
+<p class="status" id="percent-complete" style="display:inline;">Percent Complete: </p><div id ="progress-container" style="width:125px; display:inline;"></div>
 <br><p class="status">Elapsed Time of Run: <span id="elapsed-status" class="status-update"></span></p><br>
 <p class="status">Number of Records Returned: <span id="records-status" class="status-update"></span></p>
 

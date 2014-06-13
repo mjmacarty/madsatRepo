@@ -41,7 +41,7 @@ function execFunction() {
 	}).done(function(){
 		statusUpdate.session = $('session').text();
 		console.log(statusUpdate.session);
-		var timeIt = setInterval(function(){statusUpdate.getNumQueries(); },200); 
+		statusUpdate.timeIt = setInterval(function(){statusUpdate.getNumQueries(); },200); 
 		
 	});
 	
@@ -135,6 +135,7 @@ var statusDisplay = {
 			 '<p class="status">Current as of:</p>' +
 		'<span id="cao" style="font-size:10pt"></span><br>' +
 		'<p class="status">Total Queries Planned: <span id="total-status" class="status"></span></p><br>' +
+		'<p class="status">Queries Executing: <span id="queries-executing" class="status-update"></span></p><br>' +
 		'<p class="status">Queries Completed: <span id="complete-status" class="status"></span></p><br>' +
 		'<p class="status">Percent Complete: <span id="percent-status" class="status"></span></p><br>' +
 		'<p class="status">Elapsed Time of Run: <span id="elapsed-status" class="status"></span></p><br>' +
@@ -153,6 +154,7 @@ var statusUpdate = {
 		queries : [],
 		numQueries : 0,
 		session : '',
+		timeIt:'',
 		getNumQueries : function(){
 			$.ajax({
 				type: 'get',
@@ -178,15 +180,28 @@ var statusUpdate = {
 						success: function(data){
 							var completed = '';
 							var numCompleted = 1;
+							var executedQueries = '';
 							completed = $(data).find('state');
+							executedQueries = $(data).find('adjustedQueries').last().text();
 							numCompleted = completed.length;
+							$('#queries-executing').html(executedQueries);
 							$('#complete-status').html(numCompleted);
-							percentComplete = numCompleted/statusUpdate.numQueries * 100;
+							if(executedQueries != ''){
+								percentComplete = numCompleted/executedQueries * 100;
+							} else{
+								percentComplete = numCompleted/statusUpdate.numQueries * 100;
+							}
+							numericalPercent = percentComplete.toFixed(2);
 							console.log(numCompleted);
 							console.log(numCompleted/statusUpdate.numQueries);
+							console.log(executedQueries)
 							$('#progress').progressbar('value', percentComplete);
-							$('#complete-text').html(percentComplete + '% Complete');
-							if(percentComplete>=99)clearInterval(timeIt);
+							$('#complete-text').html(numericalPercent + ' % ');
+							if(percentComplete >= 100){
+								clearInterval(statusUpdate.timeIt);
+								$('#progress-container').html('<span class="status-update">Completed</span>'); 	
+							
+							}
 						}
 					});
 				}
@@ -199,10 +214,15 @@ var statusUpdate = {
 	};
 
 var addProgressBar = function(){
-	$('#percent-complete').append('<div id="progress" style="height:10px; width:100px;">' +
+	$('#progress-container').append('<div id="progress" style="height:10px; width:100px;">' +
 			'</div> <span style="display:inline;" id="complete-text" class="status-update"></span>');
 	$('#progress').progressbar();
   };
+
+//clear status stats when new database is selected  
+var clearStatus = function(){
+	$('.status-update').html('');
+};  
 
 function auto_Function() {
     $.get('inputQueryExamples.txt',function(data){
