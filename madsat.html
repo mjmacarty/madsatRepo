@@ -48,8 +48,14 @@
 		
 		// clear status update values
 		$('#database-list').change(function(){
-			clearStatus();
-		})
+			statusDisplay.change(statusDisplay.libraryTab);
+			
+		});
+		
+		$('#query-list').change(function(){
+			statusDisplay.change(statusDisplay.libraryTab);
+			$('#result-link').remove();
+		});
 			
 			$.post('deleteFiles.jsp');
 		 
@@ -274,7 +280,7 @@
             $('#translate').button("option", "disabled", true);
             	//this.disabled = true;
 	    	transFunction();
-	   		
+	    	$('#result-link').remove();
             
             }); //end translate click
             
@@ -298,6 +304,7 @@
 				$('#execute-canned').button("option", "disabled", true);    
 				execFunction();
 				addProgressBar();
+				
 				
 				
 							
@@ -571,6 +578,7 @@
 	
 	<button id="prev" value="-100">Prev</button>
 	<button id="next" value="100">Next</button>
+	
 	</div>
 	
 	<p id="fetch" style="color:#4297d7;"></p>

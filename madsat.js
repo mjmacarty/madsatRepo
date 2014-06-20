@@ -56,6 +56,7 @@ function callPlanAgent() {
 		
 	}).done(function(){
 		$('#execute-canned').button("enable");
+		$('#np-results').append('<p id="result-link"><a href="' +statusUpdate.session +  '/" target="_blank">View Raw Result Files</a></p>');
 	});
 	nextResult();
 }
@@ -133,13 +134,13 @@ var statusDisplay = {
 		
 		libraryTab : '<h1>Status Summary</h1><br>' +
 			 '<p class="status">Current as of:</p>' +
-		'<span id="cao" style="font-size:10pt"></span><br>' +
-		'<p class="status">Total Queries Planned: <span id="total-status" class="status"></span></p><br>' +
+		'<span id="cao" class="status-update"></span><br>' +
+		'<p class="status">Total Queries Planned: <span id="total-status" class="status-update"></span></p><br>' +
 		'<p class="status">Queries Executing: <span id="queries-executing" class="status-update"></span></p><br>' +
-		'<p class="status">Queries Completed: <span id="complete-status" class="status"></span></p><br>' +
-		'<p class="status">Percent Complete: <span id="percent-status" class="status"></span></p><br>' +
-		'<p class="status">Elapsed Time of Run: <span id="elapsed-status" class="status"></span></p><br>' +
-		'<p class="status">Number of Records Returned: <span id="records-status" class="status"></span></p>'
+		'<p class="status">Queries Completed: <span id="complete-status" class="status-update"></span></p><br>' +
+		'<p class="status" id="percent-complete" style="display:inline;">Percent Complete: </p><div id ="progress-container" style="width:125px; display:inline;"></div><br>' +
+		'<p class="status">Elapsed Time of Run: <span id="elapsed-status" class="status-update"></span></p><br>' +
+		'<p class="status">Number of Records Returned: <span id="records-status" class="status-update"></span></p>'
 ,
 		
 		analyticsTab :'<h1>Model Nodes</h1><p>Node Name</p>' + 
@@ -147,6 +148,7 @@ var statusDisplay = {
 		
 		change : function(content){
 			$('#status').html(content);
+			console.log('I executed!');
 		}
 };
 
@@ -194,13 +196,13 @@ var statusUpdate = {
 							numericalPercent = percentComplete.toFixed(2);
 							console.log(numCompleted);
 							console.log(numCompleted/statusUpdate.numQueries);
-							console.log(executedQueries)
+							console.log(executedQueries);
 							$('#progress').progressbar('value', percentComplete);
 							$('#complete-text').html(numericalPercent + ' % ');
 							if(percentComplete >= 100){
 								clearInterval(statusUpdate.timeIt);
 								$('#progress-container').html('<span class="status-update">Completed</span>'); 	
-							
+								
 							}
 						}
 					});
@@ -214,7 +216,7 @@ var statusUpdate = {
 	};
 
 var addProgressBar = function(){
-	$('#progress-container').append('<div id="progress" style="height:10px; width:100px;">' +
+	$('#progress-container').append('<div id="progress" style="height:10px; width:100px; display:inline-block">' +
 			'</div> <span style="display:inline;" id="complete-text" class="status-update"></span>');
 	$('#progress').progressbar();
   };
