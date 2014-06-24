@@ -29,6 +29,18 @@
             	statusDisplay.change(statusDisplay.analyticsTab);
             });
             
+         // reset status update values
+    		$('#database-list').change(function(){
+    			statusDisplay.change(statusDisplay.libraryTab);
+    			$('#result-link').remove();
+    			
+    		});
+    		
+    		$('#query-list').change(function(){
+    			statusDisplay.change(statusDisplay.libraryTab);
+    			$('#result-link').remove();
+    		});
+            
             auto_Function();
             
             
@@ -42,24 +54,14 @@
             	nextResult();
             	fetch();
             });
+            
+         
 		
 		//clear panels when a different tab is selected	
 		$('#tabs li a').click(function(){
-		
-		// clear status update values
-		$('#database-list').change(function(){
-			statusDisplay.change(statusDisplay.libraryTab);
-			
-		});
-		
-		$('#query-list').change(function(){
-			statusDisplay.change(statusDisplay.libraryTab);
-			$('#result-link').remove();
-		});
-			
+					
 			$.post('deleteFiles.jsp');
-		 
-		  
+				  
 		  $('#graphicsDisplay').html('<h1>Geospatial Area of Interest</h1>' +
     '<p>This panel will display, if relevant, a graphic of interest.')
 		  
@@ -278,7 +280,7 @@
             	//this.disabled = true;
 	    	transFunction();
 	    	$('#result-link').remove();
-	    	statusDisplay.change(statusDisplay.libraryTab);
+	    	//statusDisplay.change(statusDisplay.libraryTab);
             }); //end translate click
             
             //get correct query translation
@@ -295,13 +297,15 @@
                                         });
             
             $('#execute-canned').click(function(){
+            	
+            	statusDisplay.change(statusDisplay.libraryTab);
             	var cao = '<br>'; 
             	cao += new Date();
 				$('#cao').html(cao);
 				$('#execute-canned').button("option", "disabled", true);    
 				execFunction();
 				addProgressBar();
-				statusDisplay.change(statusDisplay.libraryTab);
+				
 				
 				
 				
