@@ -272,16 +272,13 @@
             });//end get
           
 	  //post selection database and query
-	  // last update 4/11/14
-	  //$(document).ready(function(){
 	       
-            //var qString = '';
             $('#translate').click(function(){
             $('#translate').button("option", "disabled", true);
             	//this.disabled = true;
 	    	transFunction();
 	    	$('#result-link').remove();
-            
+	    	statusDisplay.change(statusDisplay.libraryTab);
             }); //end translate click
             
             //get correct query translation
@@ -304,6 +301,7 @@
 				$('#execute-canned').button("option", "disabled", true);    
 				execFunction();
 				addProgressBar();
+				statusDisplay.change(statusDisplay.libraryTab);
 				
 				
 				
