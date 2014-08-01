@@ -56,7 +56,7 @@ function callPlanAgent() {
 		
 	}).done(function(){
 		$('#execute-canned').button("enable");
-		$('#np-results').append('<p id="result-link"><a href="' +statusUpdate.session +  '/" target="_blank">View Raw Result Files</a></p>');
+		$('#np-results').append('<p id="result-link"><a href="' +statusUpdate.session +  '/result.txt" target="_blank">View Raw Result Files</a></p>');
 	});
 	nextResult();
 }

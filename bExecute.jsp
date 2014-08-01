@@ -47,7 +47,7 @@
 			str = lines.get(i);
 		}
 %>
-<li><xmp><%=str%></xmp></li>
+<li><xmp style="line-height:.15;"><%=str%></xmp></li>
 <%
 	}
 %>

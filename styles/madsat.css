@@ -144,7 +144,8 @@ li {
             list-style: none;
             margin-left: -25px;
             margin-bottom: 5px;
-            margin-top: 5px;		
+            margin-top: 5px;
+            line-height:1;		
 }
 
 
