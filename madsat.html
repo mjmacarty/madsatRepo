@@ -17,8 +17,11 @@
             $("#tabs").tabs();
             
             //get available datasources
-            getDb('#nlq-database-list');
+            getDb('#nlq-database-list')
+            getDb('#sql-database-list');
             getDb('#database-list');
+            
+            
             
             //update status content based on active tab
             $('#library-tab').click(function(){
@@ -94,10 +97,11 @@
     <ul>
         <li id="library-tab"><a href="#tabs-5">Library</a></li>
 		<li id="analytics-tab"><a href="#tabs-6">Analytics</a></li>
-		<li><a href="#tabs-1">Constrained</a></li>
-        <li><a href="#tabs-2">NLQ</a></li>
-        <li><a href="#tabs-3">Keyword</a></li>
-        <li><a href="#tabs-4">SQL</a></li>
+		<li id ="constrained-tab"><a href="#tabs-1">Constrained</a></li>
+        <li id="nlq-tab"><a href="#tabs-2">NLQ</a></li>
+        <li id="keyword-tab"><a href="#tabs-3">Keyword</a></li>
+        <li id="sql-tab"><a href="#tabs-4">SQL</a></li>
+        <li id="manage-tab"><a href="#tabs-7">Manage Data Sites</a></li>
         
 	
     </ul>
@@ -215,8 +219,21 @@
     <div id="tabs-4">
     	<h1>SQL interface</h1>
     	<p class="description">User may enter a query using ANSI SQL syntax</p>
-    	<label for="sql" style="vertical-align: top;">Enter SQL</label>
-    	<textarea id="sql" rows="5"></textarea>
+    	<label for="sql-database-list">Select Domain:</label><br>
+	<select id="sql-database-list" style="width:150px; height:25px;">
+	<option value="null">Select...</option>
+	</select>  
+	  <br><br>
+    	
+    	<label for="sql" style="vertical-align: top;">Enter SQL:</label><br>
+    	<textarea id="sql" rows="5"></textarea><br>
+    	<button id="execute-sql">Execute</button>
+    	<script>
+    		$('#execute-sql').click(function(){
+    			execFunction();
+    		})
+    	</script>
+    	
     </div>
     
     <!-- Library saved queries tab -->
@@ -292,7 +309,7 @@
 					    					sqlQuery += ':';
                                             sqlQuery += $('.ui-selected').text()
                                             console.log(sqlQuery);
-
+											alert(sqlQuery);
                                             }
                                         });
             
@@ -494,7 +511,7 @@
                 var timerUpdate = setTimeout(function(){
                         
                     
-                    },3000)
+                    },5000)
 		    setTimeout(function(){
                     $.ajax({
                type:'GET',
@@ -563,6 +580,16 @@
 </script>
 	
 	
+    
+    </div>
+    
+    <div id="tabs-7">
+    <!-- Manage Data Sites -->
+    <h1>Manage Data Sites</h1>
+    <br><br>
+    <button>Add</button>
+    <button>Delete</button>
+    <button>View</button>
     
     </div>
     

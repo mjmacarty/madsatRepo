@@ -1,34 +1,65 @@
 var interval = null;
+
+
+var galactic = {
+	qString:'',
+	database:'',
+	getIndex : function (){
+		return $("ul li.ui-state-active").index();
+    }
+};
+
 function transFunction() {
 	clean();
+	
 	$('#selectable').html('Translating <img src="images/translate.gif" width="100">');
-	var qString = '';
-	qString = $('#database-list').val();
-	qString += ':' + $('#query-list').val();
+		
+	if (galactic.getIndex()==3){
+		galactic.database = $('#nlq-database-list').val();
+	} else{
+		galactic.database = $('#database-list').val();
+	}
+	
+	
+	galactic.qString = galactic.database + ':' + $('#query-list').val();
+	console.log(galactic.qString);
+	
 	$.post("bTranslate.jsp", 
-			{q : qString},
+			{q : galactic.qString},
 			
 			function(data, status) {
-		
+			console.log(galactic.qString);
 			$('#selectable').html(data);
 			
 		}).done(function(){
-			$('#translate').button("enable");
+			$('#translate').button('enable');
 			//$('#translate').removeAttr('ui-button-disabled');
 		});
 	
-	console.log(qString);
+	
 }
 function execFunction() {
 	clean();
 	$('#query-results')
 	.html('<img src="images/ajax-loader.gif"><br>Loading...');
 	//interval = setInterval(statusFunction, 1500);
-	var qString = '';
-	qString += $('#database-list').val();
-	qString += ':' + $('.ui-selected').text();
+	//var qString = '';
+	//global.qString += $('#database-list').val();
+	function getIndex(){
+	     return $("ul li.ui-state-active").index();
+	    }
+	console.log(getIndex())
+	if (getIndex()==5){
+		galactic.database = $('#sql-database-list').val();
+		galactic.qString = galactic.database + ':' + $('#sql').val();
+		console.log(galactic.qString);
+	} else{
+		galactic.qString = galactic.database + ':' + $('.ui-selected').text();
+		console.log(galactic.qString);
+	}
+	
 	$.post("bExecute.jsp", {
-		q : qString
+		q : galactic.qString
 	}, function(data, status) {
 		if (status == "success") {
 			$('#graphicsDisplay').html(data);
