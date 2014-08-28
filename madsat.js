@@ -217,6 +217,7 @@ var statusUpdate = {
 							completed = $(data).find('state');
 							executedQueries = $(data).find('adjustedQueries').last().text();
 							numCompleted = completed.length;
+							numRecords = $(data).find('total');
 							$('#queries-executing').html(executedQueries);
 							$('#complete-status').html(numCompleted);
 							if(executedQueries != ''){
@@ -230,9 +231,11 @@ var statusUpdate = {
 							console.log(executedQueries);
 							$('#progress').progressbar('value', percentComplete);
 							$('#complete-text').html(numericalPercent + ' % ');
+							$('#records-status').html(numRecords);
 							if(percentComplete >= 100){
 								clearInterval(statusUpdate.timeIt);
-								$('#progress-container').html('<span class="status-update">Completed</span>'); 	
+								$('#progress-container').html('<span class="status-update">Completed</span>');
+								
 								
 							}
 						}
