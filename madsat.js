@@ -212,12 +212,14 @@ var statusUpdate = {
 						cache: false,
 						success: function(data){
 							var completed = '';
-							var numCompleted = 1;
-							var executedQueries = '';
+							var numCompleted = 0;
+							var executedQueries = 0;
+							var numRecords = 0;
+							console.log(numRecords);
 							completed = $(data).find('state');
 							executedQueries = $(data).find('adjustedQueries').last().text();
 							numCompleted = completed.length;
-							numRecords = $(data).find('total');
+							
 							$('#queries-executing').html(executedQueries);
 							$('#complete-status').html(numCompleted);
 							if(executedQueries != ''){
@@ -226,16 +228,21 @@ var statusUpdate = {
 								percentComplete = numCompleted/statusUpdate.numQueries * 100;
 							}
 							numericalPercent = percentComplete.toFixed(2);
-							console.log(numCompleted);
-							console.log(numCompleted/statusUpdate.numQueries);
-							console.log(executedQueries);
+							
+							
+							//console.log(numCompleted);
+							//console.log(numCompleted/statusUpdate.numQueries);
+							//console.log(executedQueries);
 							$('#progress').progressbar('value', percentComplete);
 							$('#complete-text').html(numericalPercent + ' % ');
-							$('#records-status').html(numRecords);
+							
+							
 							if(percentComplete >= 100){
 								clearInterval(statusUpdate.timeIt);
 								$('#progress-container').html('<span class="status-update">Completed</span>');
-								
+								numRecords = $(data).find('total').text();
+								console.log(numRecords);
+								$('#records-status').html(numRecords);
 								
 							}
 						}

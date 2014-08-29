@@ -75,17 +75,20 @@
 				complete: function(){
 					$.ajax({
 						type: 'get',
-						url: '086417549699673/status.txt',
+						url: 'status.txt',
 						cache: false,
 						success: function(data){
 							var completed = '';
 							var numCompleted = 1;
+							var numRecords = 0;
 							completed = $(data).find('state');
 							numCompleted = completed.length;
-							
+							console.log(numRecords);
 							percentComplete = numCompleted/statusUpdate.numQueries * 100
-							console.log(numCompleted);
-							console.log(numCompleted/statusUpdate.numQueries);
+							//console.log(numCompleted);
+							//console.log(numCompleted/statusUpdate.numQueries);
+							numRecords = $(data).find('total').text();
+							console.log(numRecords);
 							$('#progress-two').progressbar('value', percentComplete);
 							$('#complete-text').html(percentComplete + '% Complete');
 							if(percentComplete>=99)clearInterval(timeIt);
